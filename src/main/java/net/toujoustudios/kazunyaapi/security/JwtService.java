@@ -20,10 +20,23 @@ public class JwtService {
     private static final String SECRET_KEY = "";
     public static final int TOKEN_LIFETIME = 1000 * 60 * 60 * 24;
 
+    /**
+     * Extracts the username from a given JWT token.
+     *
+     * @param token The token of the user.
+     * @return The username saved inside the token.
+     */
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
+    /**
+     * Extract any claim from a given JWT token.
+     *
+     * @param token The token of the user.
+     * @param claimsResolver A method to resolve the claim.
+     * @return A value returned by the resolver.
+     */
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -44,7 +57,7 @@ public class JwtService {
      *
      * @param extraClaims Any claims that the user has.
      * @param userDetails The information of the user to generate a token for.
-     * @return The full JWT token as a string, without "Bearer" prefix.
+     * @return The full JWT token as a string, without the "Bearer" prefix.
      */
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
         return Jwts
