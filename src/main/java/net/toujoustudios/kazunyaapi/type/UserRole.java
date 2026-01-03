@@ -4,6 +4,7 @@ public enum UserRole {
 
     USER,
     MODERATOR,
-    ADMIN
+    ADMIN,
+    BOT
 
 }
