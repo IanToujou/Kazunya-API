@@ -17,7 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "";
+    private static final String SECRET_KEY = System.getenv("JWT_SECRET_KEY");
     public static final int TOKEN_LIFETIME = 1000 * 60 * 60 * 24;
 
     /**
