@@ -5,6 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The primary controller used for user authentication
+ * and registration.
+ *
+ * @author Toujou Studios
+ * @since 1.0.0
+ */
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
