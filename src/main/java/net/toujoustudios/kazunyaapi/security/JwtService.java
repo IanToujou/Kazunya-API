@@ -70,6 +70,13 @@ public class JwtService {
                 .compact();
     }
 
+    /**
+     * Checks whether a JWT token is valid, by comparing expiration date and claims.
+     *
+     * @param token The JWT token to verify.
+     * @param userDetails The user details to compare with the token.
+     * @return True if the token is valid, false otherwise.
+     */
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
