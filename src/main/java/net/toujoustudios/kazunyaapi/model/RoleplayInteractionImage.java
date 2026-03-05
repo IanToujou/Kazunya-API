@@ -27,7 +27,6 @@ public class RoleplayInteractionImage {
     private String url;
     private InteractionType type;
 
-    @ElementCollection
     @Enumerated(EnumType.STRING)
     private List<InteractionGender> genders;
 

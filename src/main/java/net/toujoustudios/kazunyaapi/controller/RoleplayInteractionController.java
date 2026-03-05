@@ -8,12 +8,12 @@ import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionRepository;
 import net.toujoustudios.kazunyaapi.request.RoleplayInteractionRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller("/roleplay-interactions")
+@RestController
+@RequestMapping("/api/v1/roleplay-interactions")
 @RequiredArgsConstructor
 public class RoleplayInteractionController {
 
