@@ -1,0 +1,22 @@
+[Unit]
+Description=Kazunya API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=kazunya-api
+WorkingDirectory=/opt/kazunya-api
+ExecStart=/usr/bin/java -jar /opt/kazunya-api/Kazunya-API-1.0.0.jar
+Restart=on-failure
+RestartSec=5s
+
+Environment="/opt/kazunya-api/.env"
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/kazunya-api
+
+[Install]
+WantedBy=multi-user.target
