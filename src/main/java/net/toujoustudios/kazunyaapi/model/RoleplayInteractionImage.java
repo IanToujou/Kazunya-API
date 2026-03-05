@@ -8,7 +8,7 @@ import net.toujoustudios.kazunyaapi.type.InteractionType;
 import java.util.List;
 
 /**
- * Defines an image that is used for roleplay interactions.
+ * Defines an image used for roleplay interactions.
  * The image data is never stored locally, but rather as an
  * external link, usually a GIF website or repository.
  *
@@ -17,8 +17,8 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name = "interaction_image")
-public class InteractionImage {
+@Table(name = "roleplay_interaction_image")
+public class RoleplayInteractionImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
