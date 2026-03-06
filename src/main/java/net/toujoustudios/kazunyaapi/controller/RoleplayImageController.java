@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/roleplay-images")
+@RequestMapping("/api/v1/roleplay-images")
 @RequiredArgsConstructor
 public class RoleplayImageController {
 
