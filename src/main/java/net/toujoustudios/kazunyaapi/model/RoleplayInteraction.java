@@ -12,7 +12,7 @@ import java.util.List;
  * interaction type, gender appearance, and more, depending
  * on the user.
  *
- * @see RoleplayInteractionImage
+ * @see RoleplayImage
  * @since 1.0.0
  * @author Toujou Studios
  */
@@ -29,6 +29,6 @@ public class RoleplayInteraction {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "roleplay_interaction_id")
-    private List<RoleplayInteractionImage> images;
+    private List<RoleplayImage> images;
 
 }

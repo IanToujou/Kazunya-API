@@ -64,7 +64,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth/**")
                         .permitAll()
                         .requestMatchers(HttpMethod.GET,
-                                "/api/v1/roleplay-interactions/**"
+                                "/api/v1/roleplay-interactions/**",
+                                "/api/v1/roleplay-images/**"
                         ).permitAll()
                         .requestMatchers(
                                 "/api/v1/admin/**"

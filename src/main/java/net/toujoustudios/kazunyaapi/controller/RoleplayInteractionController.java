@@ -2,8 +2,8 @@ package net.toujoustudios.kazunyaapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayInteraction;
-import net.toujoustudios.kazunyaapi.model.RoleplayInteractionImage;
-import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionImageRepository;
+import net.toujoustudios.kazunyaapi.model.RoleplayImage;
+import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
 import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionRepository;
 import net.toujoustudios.kazunyaapi.request.RoleplayInteractionRequest;
 import org.springframework.http.HttpStatus;
@@ -18,7 +18,7 @@ import java.util.List;
 public class RoleplayInteractionController {
 
     private final RoleplayInteractionRepository repository;
-    private final RoleplayInteractionImageRepository imageRepository;
+    private final RoleplayImageRepository imageRepository;
 
     @GetMapping
     public ResponseEntity<List<RoleplayInteraction>> get() {
@@ -56,7 +56,7 @@ public class RoleplayInteractionController {
     private RoleplayInteraction save(RoleplayInteractionRequest request, RoleplayInteraction o) {
         if (request.name() == null || request.name().isBlank())
             throw new IllegalArgumentException("Name is required");
-        List<RoleplayInteractionImage> images = imageRepository.findAllById(request.images());
+        List<RoleplayImage> images = imageRepository.findAllById(request.images());
         if (images.size() != request.images().size())
             throw new IllegalArgumentException("One or more image IDs do not exist");
         o.setName(request.name());

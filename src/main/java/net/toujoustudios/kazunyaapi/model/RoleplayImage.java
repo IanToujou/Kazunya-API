@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "roleplay_interaction_image")
-public class RoleplayInteractionImage {
+public class RoleplayImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
