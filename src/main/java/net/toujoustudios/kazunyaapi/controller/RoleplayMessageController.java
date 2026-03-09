@@ -53,8 +53,8 @@ public class RoleplayMessageController {
     }
 
     private RoleplayMessage save(RoleplayMessageRequest request, RoleplayMessage o) {
-        o.message(request.message());
-        o.type(InteractionType.valueOf(request.type()));
+        o.setMessage(request.getMessage());
+        o.setType(InteractionType.valueOf(request.getType()));
         return repository.save(o);
     }
 

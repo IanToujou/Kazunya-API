@@ -2,7 +2,6 @@ package net.toujoustudios.kazunyaapi.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -19,7 +18,6 @@ import java.util.List;
  */
 @Data
 @Entity
-@Accessors(fluent = true)
 @Table(name = "roleplay_interaction")
 public class RoleplayInteraction {
 
@@ -34,7 +32,7 @@ public class RoleplayInteraction {
     private List<RoleplayImage> images;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "roleplay_message_id")
+    @JoinColumn(name = "roleplay_interaction_id")
     private List<RoleplayMessage> messages;
 
 }

@@ -4,8 +4,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayInteraction;
 import net.toujoustudios.kazunyaapi.model.RoleplayImage;
+import net.toujoustudios.kazunyaapi.model.RoleplayMessage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
 import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionRepository;
+import net.toujoustudios.kazunyaapi.repository.RoleplayMessageRepository;
 import net.toujoustudios.kazunyaapi.request.RoleplayInteractionRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,7 @@ public class RoleplayInteractionController {
 
     private final RoleplayInteractionRepository repository;
     private final RoleplayImageRepository imageRepository;
+    private final RoleplayMessageRepository messageRepository;
 
     @GetMapping
     public ResponseEntity<List<RoleplayInteraction>> get(@RequestParam(required = false) String name) {
@@ -57,9 +60,11 @@ public class RoleplayInteractionController {
     }
 
     private RoleplayInteraction save(RoleplayInteractionRequest request, RoleplayInteraction o) {
-        List<RoleplayImage> images = imageRepository.findAllById(request.images());
-        o.name(request.name());
-        o.images(images);
+        List<RoleplayImage> images = imageRepository.findAllById(request.getImages());
+        List<RoleplayMessage> messages = messageRepository.findAllById(request.getMessages());
+        o.setName(request.getName());
+        o.setImages(images);
+        o.setMessages(messages);
         return repository.save(o);
     }
 

@@ -54,9 +54,9 @@ public class RoleplayImageController {
     }
 
     private RoleplayImage save(RoleplayImageRequest request, RoleplayImage o) {
-        o.url(request.url());
-        o.type(InteractionType.valueOf(request.type()));
-        o.genders(request.genders().stream()
+        o.setUrl(request.getUrl());
+        o.setType(InteractionType.valueOf(request.getType()));
+        o.setGenders(request.getGenders().stream()
                 .map(InteractionGender::valueOf)
                 .toList());
         return repository.save(o);

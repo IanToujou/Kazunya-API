@@ -2,7 +2,6 @@ package net.toujoustudios.kazunyaapi.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.experimental.Accessors;
 import net.toujoustudios.kazunyaapi.type.InteractionGender;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
 
@@ -18,7 +17,6 @@ import java.util.List;
  */
 @Data
 @Entity
-@Accessors(fluent = true)
 @Table(name = "roleplay_interaction_image")
 public class RoleplayImage {
 

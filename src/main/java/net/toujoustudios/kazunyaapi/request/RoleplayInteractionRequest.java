@@ -5,12 +5,10 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 import java.util.List;
 
 @Data
-@Accessors(fluent = true)
 public class RoleplayInteractionRequest {
 
     @NotBlank(message = "Name cannot be empty.")
@@ -20,5 +18,8 @@ public class RoleplayInteractionRequest {
 
     @NotEmpty(message = "At least one image is required.")
     List<Integer> images;
+
+    @NotEmpty(message = "At least one message is required.")
+    List<Integer> messages;
 
 }
