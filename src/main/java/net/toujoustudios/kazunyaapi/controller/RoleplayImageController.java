@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunyaapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayImage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
@@ -32,13 +33,13 @@ public class RoleplayImageController {
     }
 
     @PostMapping
-    public ResponseEntity<RoleplayImage> add(@RequestBody RoleplayImageRequest request) {
+    public ResponseEntity<RoleplayImage> add(@Valid @RequestBody RoleplayImageRequest request) {
         RoleplayImage saved = save(request, new RoleplayImage());
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RoleplayImage> update(@PathVariable int id, @RequestBody RoleplayImageRequest request) {
+    public ResponseEntity<RoleplayImage> update(@PathVariable int id, @Valid @RequestBody RoleplayImageRequest request) {
         return repository.findById(id)
                 .map(existing -> ResponseEntity.ok(save(request, existing)))
                 .orElse(ResponseEntity.notFound().build());
@@ -53,11 +54,6 @@ public class RoleplayImageController {
     }
 
     private RoleplayImage save(RoleplayImageRequest request, RoleplayImage o) {
-
-        if (request.url() == null || request.url().isBlank())
-            throw new IllegalArgumentException("URL is required");
-        if (request.type() == null || request.type().isBlank())
-            throw new IllegalArgumentException("Type is required");
 
         o.setUrl(request.url());
 

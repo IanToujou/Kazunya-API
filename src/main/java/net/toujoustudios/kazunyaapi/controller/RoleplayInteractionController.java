@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunyaapi.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayInteraction;
 import net.toujoustudios.kazunyaapi.model.RoleplayImage;
@@ -21,8 +22,10 @@ public class RoleplayInteractionController {
     private final RoleplayImageRepository imageRepository;
 
     @GetMapping
-    public ResponseEntity<List<RoleplayInteraction>> get() {
-        return ResponseEntity.ok(repository.findAll());
+    public ResponseEntity<List<RoleplayInteraction>> get(@RequestParam(required = false) String name) {
+        if (name == null || name.isBlank())
+            return ResponseEntity.ok(repository.findAll());
+        return ResponseEntity.ok(repository.findByName(name));
     }
 
     @GetMapping("/{id}")
@@ -33,13 +36,13 @@ public class RoleplayInteractionController {
     }
 
     @PostMapping
-    public ResponseEntity<RoleplayInteraction> add(@RequestBody RoleplayInteractionRequest request) {
+    public ResponseEntity<RoleplayInteraction> add(@Valid @RequestBody RoleplayInteractionRequest request) {
         RoleplayInteraction saved = save(request, new RoleplayInteraction());
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RoleplayInteraction> update(@PathVariable int id, @RequestBody RoleplayInteractionRequest request) {
+    public ResponseEntity<RoleplayInteraction> update(@PathVariable int id, @Valid @RequestBody RoleplayInteractionRequest request) {
         return repository.findById(id)
                 .map(existing -> ResponseEntity.ok(save(request, existing)))
                 .orElse(ResponseEntity.notFound().build());
@@ -54,11 +57,7 @@ public class RoleplayInteractionController {
     }
 
     private RoleplayInteraction save(RoleplayInteractionRequest request, RoleplayInteraction o) {
-        if (request.name() == null || request.name().isBlank())
-            throw new IllegalArgumentException("Name is required");
         List<RoleplayImage> images = imageRepository.findAllById(request.images());
-        if (images.size() != request.images().size())
-            throw new IllegalArgumentException("One or more image IDs do not exist");
         o.setName(request.name());
         o.setImages(images);
         return repository.save(o);

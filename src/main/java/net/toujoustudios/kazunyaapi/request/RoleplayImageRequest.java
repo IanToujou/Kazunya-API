@@ -1,6 +1,25 @@
 package net.toujoustudios.kazunyaapi.request;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.URL;
+
 import java.util.List;
 
-public record RoleplayImageRequest(String url, String type, List<String> genders) {
+@Data
+@Accessors(fluent = true)
+public class RoleplayImageRequest {
+
+        @NotBlank(message = "URL cannot be empty.")
+        @URL(message = "URL must be a valid URL.")
+        String url;
+
+        @NotBlank(message = "Type cannot be empty.")
+        String type;
+
+        @NotEmpty(message = "At least one gender is required.")
+        List<String> genders;
+
 }
