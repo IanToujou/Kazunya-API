@@ -58,8 +58,8 @@ public class RoleplayInteractionController {
 
     private RoleplayInteraction save(RoleplayInteractionRequest request, RoleplayInteraction o) {
         List<RoleplayImage> images = imageRepository.findAllById(request.images());
-        o.setName(request.name());
-        o.setImages(images);
+        o.name(request.name());
+        o.images(images);
         return repository.save(o);
     }
 

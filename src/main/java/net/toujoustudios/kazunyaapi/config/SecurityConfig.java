@@ -65,12 +65,14 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers(HttpMethod.GET,
                                 "/api/v1/roleplay-interactions/**",
-                                "/api/v1/roleplay-images/**"
+                                "/api/v1/roleplay-images/**",
+                                "/api/v1/roleplay-messages/**"
                         ).permitAll()
                         .requestMatchers(
                                 "/api/v1/admin/**",
                                 "/api/v1/roleplay-interactions/**",
-                                "/api/v1/roleplay-images/**"
+                                "/api/v1/roleplay-images/**",
+                                "/api/v1/roleplay-messages/**"
                         )
                         .hasAuthority("ADMIN")
                 ).sessionManagement(session -> session

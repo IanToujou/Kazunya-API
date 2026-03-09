@@ -2,10 +2,9 @@ package net.toujoustudios.kazunyaapi.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import net.toujoustudios.kazunyaapi.model.RoleplayImage;
-import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
-import net.toujoustudios.kazunyaapi.request.RoleplayImageRequest;
-import net.toujoustudios.kazunyaapi.type.InteractionGender;
+import net.toujoustudios.kazunyaapi.model.RoleplayMessage;
+import net.toujoustudios.kazunyaapi.repository.RoleplayMessageRepository;
+import net.toujoustudios.kazunyaapi.request.RoleplayMessageRequest;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,32 +13,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/roleplay-images")
+@RequestMapping("/api/v1/roleplay-messages")
 @RequiredArgsConstructor
-public class RoleplayImageController {
+public class RoleplayMessageController {
 
-    private final RoleplayImageRepository repository;
+    private final RoleplayMessageRepository repository;
 
     @GetMapping
-    public ResponseEntity<List<RoleplayImage>> get() {
+    public ResponseEntity<List<RoleplayMessage>> get() {
         return ResponseEntity.ok(repository.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RoleplayImage> get(@PathVariable int id) {
+    public ResponseEntity<RoleplayMessage> get(@PathVariable int id) {
         return repository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<RoleplayImage> add(@Valid @RequestBody RoleplayImageRequest request) {
-        RoleplayImage saved = save(request, new RoleplayImage());
+    public ResponseEntity<RoleplayMessage> add(@Valid @RequestBody RoleplayMessageRequest request) {
+        RoleplayMessage saved = save(request, new RoleplayMessage());
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RoleplayImage> update(@PathVariable int id, @Valid @RequestBody RoleplayImageRequest request) {
+    public ResponseEntity<RoleplayMessage> update(@PathVariable int id, @Valid @RequestBody RoleplayMessageRequest request) {
         return repository.findById(id)
                 .map(existing -> ResponseEntity.ok(save(request, existing)))
                 .orElse(ResponseEntity.notFound().build());
@@ -53,12 +52,9 @@ public class RoleplayImageController {
         return ResponseEntity.noContent().build();
     }
 
-    private RoleplayImage save(RoleplayImageRequest request, RoleplayImage o) {
-        o.url(request.url());
+    private RoleplayMessage save(RoleplayMessageRequest request, RoleplayMessage o) {
+        o.message(request.message());
         o.type(InteractionType.valueOf(request.type()));
-        o.genders(request.genders().stream()
-                .map(InteractionGender::valueOf)
-                .toList());
         return repository.save(o);
     }
 
