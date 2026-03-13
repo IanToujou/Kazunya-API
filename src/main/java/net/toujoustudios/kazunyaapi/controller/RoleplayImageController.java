@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayImage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
+import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionRepository;
 import net.toujoustudios.kazunyaapi.dto.request.RoleplayImageRequest;
 import net.toujoustudios.kazunyaapi.type.InteractionGender;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
@@ -19,6 +20,7 @@ import java.util.List;
 public class RoleplayImageController {
 
     private final RoleplayImageRepository repository;
+    private final RoleplayInteractionRepository interactionRepository;
 
     @GetMapping
     public ResponseEntity<List<RoleplayImage>> get() {
@@ -59,6 +61,10 @@ public class RoleplayImageController {
         o.setGenders(request.getGenders().stream()
                 .map(InteractionGender::valueOf)
                 .toList());
+        if (request.getInteractionId() != null) {
+            interactionRepository.findById(request.getInteractionId())
+                    .ifPresent(o::setInteraction);
+        }
         return repository.save(o);
     }
 

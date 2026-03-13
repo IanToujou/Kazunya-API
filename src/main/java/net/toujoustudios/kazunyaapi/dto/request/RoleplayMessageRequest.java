@@ -15,4 +15,6 @@ public class RoleplayMessageRequest {
     @ValidEnum(enumClass = InteractionType.class)
     String type;
 
+    Integer interactionId;
+
 }

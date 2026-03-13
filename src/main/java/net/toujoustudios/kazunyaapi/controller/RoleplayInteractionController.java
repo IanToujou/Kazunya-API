@@ -100,6 +100,8 @@ public class RoleplayInteractionController {
         o.setName(request.getName());
         o.setImages(images);
         o.setMessages(messages);
+        images.forEach(image -> image.setInteraction(o));
+        messages.forEach(message -> message.setInteraction(o));
         return repository.save(o);
     }
 

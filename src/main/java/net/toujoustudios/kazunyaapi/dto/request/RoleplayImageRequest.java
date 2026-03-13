@@ -25,4 +25,6 @@ public class RoleplayImageRequest {
     @NotEmpty(message = "At least one gender is required.")
     List<@ValidEnum(enumClass = InteractionGender.class) String> genders;
 
+    Integer interactionId;
+
 }

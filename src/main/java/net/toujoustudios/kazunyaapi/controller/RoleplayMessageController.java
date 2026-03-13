@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayMessage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayMessageRepository;
+import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionRepository;
 import net.toujoustudios.kazunyaapi.dto.request.RoleplayMessageRequest;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.List;
 public class RoleplayMessageController {
 
     private final RoleplayMessageRepository repository;
+    private final RoleplayInteractionRepository interactionRepository;
 
     @GetMapping
     public ResponseEntity<List<RoleplayMessage>> get() {
@@ -55,6 +57,10 @@ public class RoleplayMessageController {
     private RoleplayMessage save(RoleplayMessageRequest request, RoleplayMessage o) {
         o.setMessage(request.getMessage());
         o.setType(InteractionType.valueOf(request.getType()));
+        if (request.getInteractionId() != null) {
+            interactionRepository.findById(request.getInteractionId())
+                    .ifPresent(o::setInteraction);
+        }
         return repository.save(o);
     }
 
