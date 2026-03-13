@@ -20,11 +20,12 @@ public interface RoleplayInteractionRepository extends JpaRepository<RoleplayInt
 
     @Query("SELECT DISTINCT ri FROM RoleplayInteraction ri " +
            "JOIN ri.images img " +
+           "JOIN img.genders g " +
            "WHERE ri.name = :name AND img.type = :type " +
-           "AND EXISTS (SELECT 1 FROM RoleplayImage i WHERE i MEMBER OF ri.images " +
-           "AND i.type = :type AND (:gender MEMBER OF i.genders OR 'ANY' MEMBER OF i.genders))")
+           "AND (g = :gender OR g = :anyGender)")
     List<RoleplayInteraction> findByNameAndTypeAndGender(@Param("name") String name,
                                                           @Param("type") InteractionType type,
-                                                          @Param("gender") InteractionGender gender);
+                                                          @Param("gender") InteractionGender gender,
+                                                          @Param("anyGender") InteractionGender anyGender);
 
 }

@@ -55,7 +55,7 @@ public class RoleplayInteractionService {
                 genderStr = genderStr.trim();
                 if (!genderStr.isEmpty()) {
                     InteractionGender interactionGender = InteractionGender.valueOf(genderStr.toUpperCase());
-                    List<RoleplayInteraction> filtered = repository.findByNameAndTypeAndGender(name, interactionType, interactionGender);
+                    List<RoleplayInteraction> filtered = repository.findByNameAndTypeAndGender(name, interactionType, interactionGender, InteractionGender.ANY);
                     for (RoleplayInteraction interaction : filtered) {
                         if (!results.contains(interaction)) {
                             results.add(interaction);

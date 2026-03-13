@@ -51,13 +51,10 @@ public class RoleplayMessageService {
     private RoleplayMessage save(RoleplayMessageRequest request, RoleplayMessage o) {
         o.setMessage(request.getMessage());
         o.setType(InteractionType.valueOf(request.getType()));
-
-        // Set bi-directional reference if interaction ID is provided
         if (request.getInteractionId() != null) {
             interactionRepository.findById(request.getInteractionId())
                     .ifPresent(o::setInteraction);
         }
-
         return repository.save(o);
     }
 

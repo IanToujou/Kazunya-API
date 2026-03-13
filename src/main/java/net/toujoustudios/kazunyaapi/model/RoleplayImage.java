@@ -30,7 +30,10 @@ public class RoleplayImage {
     @Enumerated(EnumType.STRING)
     private InteractionType type;
 
+    @ElementCollection(targetClass = InteractionGender.class)
+    @CollectionTable(name = "roleplay_image_genders", joinColumns = @JoinColumn(name = "roleplay_image_id"))
     @Enumerated(EnumType.STRING)
+    @Column(name = "gender")
     private List<InteractionGender> genders;
 
     @ManyToOne
