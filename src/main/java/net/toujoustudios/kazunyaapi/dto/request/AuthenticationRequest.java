@@ -1,5 +1,6 @@
-package net.toujoustudios.kazunyaapi.security;
+package net.toujoustudios.kazunyaapi.dto.request;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthenticationRequest {
 
+    @NotBlank(message = "Username cannot be empty.")
     private String username;
+
+    @NotBlank(message = "Password cannot be empty.")
     private String password;
 
 }

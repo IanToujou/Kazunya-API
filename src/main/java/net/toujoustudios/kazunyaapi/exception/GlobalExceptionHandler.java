@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
                 .getFieldErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(" "));
         return ResponseEntity.badRequest().body(errors);
     }
 

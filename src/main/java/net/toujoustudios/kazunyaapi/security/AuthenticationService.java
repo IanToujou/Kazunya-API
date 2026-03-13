@@ -2,6 +2,9 @@ package net.toujoustudios.kazunyaapi.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import net.toujoustudios.kazunyaapi.dto.request.AuthenticationRequest;
+import net.toujoustudios.kazunyaapi.dto.request.RegisterRequest;
+import net.toujoustudios.kazunyaapi.dto.response.AuthenticationResponse;
 import net.toujoustudios.kazunyaapi.repository.UserRepository;
 import net.toujoustudios.kazunyaapi.type.UserRole;
 import net.toujoustudios.kazunyaapi.model.User;
@@ -20,6 +23,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request, HttpServletRequest httpServletRequest) {
+        if (repository.findByUsername(request.getUsername()).isPresent())
+            throw new IllegalArgumentException("The username is already taken.");
         var user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())

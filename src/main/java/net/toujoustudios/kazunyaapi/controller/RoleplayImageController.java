@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayImage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
-import net.toujoustudios.kazunyaapi.request.RoleplayImageRequest;
+import net.toujoustudios.kazunyaapi.dto.request.RoleplayImageRequest;
 import net.toujoustudios.kazunyaapi.type.InteractionGender;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
 import org.springframework.http.HttpStatus;

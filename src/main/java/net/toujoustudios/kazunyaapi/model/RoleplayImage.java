@@ -1,5 +1,6 @@
 package net.toujoustudios.kazunyaapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import net.toujoustudios.kazunyaapi.type.InteractionGender;
@@ -31,5 +32,10 @@ public class RoleplayImage {
 
     @Enumerated(EnumType.STRING)
     private List<InteractionGender> genders;
+
+    @ManyToOne
+    @JoinColumn(name = "roleplay_interaction_id")
+    @JsonIgnore
+    private RoleplayInteraction interaction;
 
 }

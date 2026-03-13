@@ -2,6 +2,9 @@ package net.toujoustudios.kazunyaapi.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import net.toujoustudios.kazunyaapi.dto.request.AuthenticationRequest;
+import net.toujoustudios.kazunyaapi.dto.request.RegisterRequest;
+import net.toujoustudios.kazunyaapi.dto.response.AuthenticationResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

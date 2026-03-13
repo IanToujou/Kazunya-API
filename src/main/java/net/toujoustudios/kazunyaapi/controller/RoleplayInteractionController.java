@@ -9,7 +9,7 @@ import net.toujoustudios.kazunyaapi.model.RoleplayMessage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayImageRepository;
 import net.toujoustudios.kazunyaapi.repository.RoleplayInteractionRepository;
 import net.toujoustudios.kazunyaapi.repository.RoleplayMessageRepository;
-import net.toujoustudios.kazunyaapi.request.RoleplayInteractionRequest;
+import net.toujoustudios.kazunyaapi.dto.request.RoleplayInteractionRequest;
 import net.toujoustudios.kazunyaapi.type.InteractionGender;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
 import org.springframework.http.HttpStatus;

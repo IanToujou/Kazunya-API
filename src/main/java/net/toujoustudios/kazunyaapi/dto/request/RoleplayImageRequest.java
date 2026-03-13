@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunyaapi.request;
+package net.toujoustudios.kazunyaapi.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;

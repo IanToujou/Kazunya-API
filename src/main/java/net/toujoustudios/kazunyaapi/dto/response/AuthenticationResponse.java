@@ -1,4 +1,4 @@
-package net.toujoustudios.kazunyaapi.security;
+package net.toujoustudios.kazunyaapi.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

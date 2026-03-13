@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import net.toujoustudios.kazunyaapi.model.RoleplayMessage;
 import net.toujoustudios.kazunyaapi.repository.RoleplayMessageRepository;
-import net.toujoustudios.kazunyaapi.request.RoleplayMessageRequest;
+import net.toujoustudios.kazunyaapi.dto.request.RoleplayMessageRequest;
 import net.toujoustudios.kazunyaapi.type.InteractionType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
