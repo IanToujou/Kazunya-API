@@ -28,7 +28,7 @@ public class RoleplayInteractionFilter {
         return interactions;
     }
 
-    public static List<InteractionGender> parseGenders(String gender) {
+    private static List<InteractionGender> parseGenders(String gender) {
 
         if (gender == null || gender.isBlank() || gender.equalsIgnoreCase("any"))
             return List.of(InteractionGender.ANY);
