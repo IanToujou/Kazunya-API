@@ -27,10 +27,10 @@ public class RoleplayInteraction {
 
     private String name;
 
-    @OneToMany(mappedBy = "roleplayInteraction", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "interaction", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoleplayImage> images;
 
-    @OneToMany(mappedBy = "roleplayInteraction", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "interaction", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RoleplayMessage> messages;
 
 }
